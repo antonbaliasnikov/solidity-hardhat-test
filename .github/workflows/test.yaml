@@ -1,4 +1,4 @@
-name: Run Era Test Node Action
+name: Test
 
 on:
   pull_request:
