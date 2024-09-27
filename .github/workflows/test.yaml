@@ -1,0 +1,34 @@
+name: Run Era Test Node Action
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Era Test Node
+        uses: dutterbutter/era-test-node-action@latest
+        with:
+          mode: "run"
+          showCalls: "user"
+          showStorageLogs: "read"
+          showVmDetails: "all"
+          showGasDetails: "all"
+          resolveHashes: "true"
+          log: "info"
+          logFilePath: "era_test_node.log"
+          target: "x86_64-unknown-linux-gnu"
+
+      - name: Compile contracts
+        run: yarn compile
+
+      - name: Run tests
+        run: yarn test
