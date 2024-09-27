@@ -17,6 +17,9 @@ jobs:
       - name: Run Era Test Node
         uses: dutterbutter/era-test-node-action@latest
 
+      - name: Install dependencies
+        run: yarn install
+
       - name: Compile contracts
         run: yarn compile
 
